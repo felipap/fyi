@@ -1,0 +1,112 @@
+{
+  "name": "fyi",
+  "version": "0.1.7",
+  "description": "AI-powered indicators for Mac.",
+  "main": ".vite/build/main.js",
+  "scripts": {
+    "start": "IS_DEV=true electron-forge start",
+    "dev": "nodemon --exec \"npm run start\"",
+    "package": "electron-forge package",
+    "ts-check-main": "tsc --noEmit -p src/tsconfig.json",
+    "ts-check-windows": "tsc --noEmit -p windows/settings/tsconfig.json && tsc --noEmit -p windows/main/tsconfig.json",
+    "make": "IS_MAKE=true electron-forge make --arch=\"arm64,x64\"",
+    "make-arm64": "IS_MAKE=true electron-forge make --arch=\"arm64\"",
+    "publish": "electron-forge publish",
+    "lint": "eslint --ext .ts,.tsx .",
+    "evals": "NODE_ENV=test ts-node src/ai/openai/assess-capture/index.eval.ts && NODE_ENV=test ts-node src/ai/openai/goal-feedback/index.eval.ts",
+    "release": "standard-version"
+  },
+  "keywords": [],
+  "repository": "https://github.com/felipap/fyi",
+  "author": {
+    "name": "Felipe Aragão",
+    "email": "faragaop@gmail.com"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  },
+  "packageManager": "pnpm@8.15.4",
+  "devDependencies": {
+    "@electron-forge/cli": "^7.7.0",
+    "@electron-forge/maker-deb": "^7.7.0",
+    "@electron-forge/maker-dmg": "^7.8.1",
+    "@electron-forge/maker-rpm": "^7.7.0",
+    "@electron-forge/maker-squirrel": "^7.7.0",
+    "@electron-forge/maker-zip": "^7.7.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.7.0",
+    "@electron-forge/plugin-fuses": "^7.7.0",
+    "@electron-forge/plugin-vite": "^7.7.0",
+    "@electron-forge/publisher-github": "^7.8.1",
+    "@electron-forge/shared-types": "^7.7.0",
+    "@electron/fuses": "^1.8.0",
+    "@sentry/node": "^9.39.0",
+    "@tailwindcss/vite": "^4.0.12",
+    "@types/electron-squirrel-startup": "^1.0.2",
+    "@types/express": "^5.0.2",
+    "@types/node": "^22.13.9",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "@vitejs/plugin-react": "^4.6.0",
+    "conventional-changelog-cli": "^5.0.0",
+    "electron": "35.0.0",
+    "electron-builder": "^26.0.12",
+    "electron-osx-sign": "^0.6.0",
+    "electron-squirrel-startup": "^1.0.1",
+    "eslint": "^8.57.1",
+    "eslint-plugin-import": "^2.31.0",
+    "nodemon": "^3.1.9",
+    "sharp": "^0.34.3",
+    "standard-version": "^9.5.0",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.8.3",
+    "vite": "^5.4.14",
+    "vite-plugin-electron": "^0.29.0"
+  },
+  "dependencies": {
+    "@sentry/electron": "^6.8.0",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/postcss": "^4.0.12",
+    "assert": "^2.1.0",
+    "class-variance-authority": "^0.7.1",
+    "dayjs": "^1.11.13",
+    "dotenv": "^16.5.0",
+    "electron-log": "^5.4.1",
+    "electron-store": "^10.0.1",
+    "electron-updater": "^6.6.2",
+    "framer-motion": "^12.17.3",
+    "lucide-react": "^0.501.0",
+    "node-machine-id": "^1.1.12",
+    "openai": "^5.9.2",
+    "postcss": "^8.5.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-error-boundary": "^6.0.0",
+    "scheduler": "^0.26.0",
+    "source-map-support": "^0.5.21",
+    "tailwind-merge": "^3.0.2",
+    "tailwindcss": "^4.0.12",
+    "zod": "^3.24.2",
+    "zustand": "^5.0.3"
+  },
+  "build": {
+    "appId": "engineering.pi.nudge",
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "protocols": [
+        {
+          "name": "Nudge Protocol",
+          "schemes": [
+            "nudge"
+          ]
+        }
+      ]
+    }
+  }
+}
