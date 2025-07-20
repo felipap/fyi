@@ -55,12 +55,10 @@ export function createTray() {
       } else {
         // Get tray bounds to position the window underneath
         const trayBounds = tray.getBounds()
-        const windowWidth = 350
-        const windowHeight = 200
 
         // Position the window under the tray
         // On macOS, tray is typically in the top-right menu bar
-        const x = trayBounds.x - windowWidth + trayBounds.width
+        const x = trayBounds.x - menuWindow.getBounds().width + trayBounds.width
         const y = trayBounds.y + trayBounds.height
 
         menuWindow.setPosition(x, y)

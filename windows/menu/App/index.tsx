@@ -13,7 +13,7 @@ export default function App() {
   }, [])
 
   return (
-    <div className="flex flex-col h-screen text-contrast">
+    <div className="flex flex-col h-screen text-contrast [app-region:drag] bg-white/50 dark:bg-transparent">
       <Menu>
         <MenuItem label="Something that the AI." onClick={() => {}} />
         <MenuSeparator />
