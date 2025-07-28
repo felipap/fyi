@@ -4,7 +4,7 @@ import { app, BrowserWindow } from 'electron'
 import started from 'electron-squirrel-startup'
 import { setupIPC } from './ipc'
 import { getImagePath } from './lib/utils'
-import { createTray } from './tray'
+import { startNuggets } from './tray'
 import { createMenuWindow, createSettingsWindow, prefWindow } from './windows'
 
 // if (app.isPackaged) {
@@ -29,7 +29,7 @@ async function onInit() {
   setupIPC()
   createMenuWindow()
   createSettingsWindow()
-  createTray()
+  startNuggets()
 
   // Hide dock icon on macOS initially (Settings window starts hidden)
   if (process.platform === 'darwin') {
@@ -93,7 +93,9 @@ if (!gotTheLock) {
   app.on('second-instance', (event, commandLine) => {
     // Someone tried to run a second instance, focus our window instead
     if (prefWindow) {
-      if (prefWindow.isMinimized()) prefWindow.restore()
+      if (prefWindow.isMinimized()) {
+        prefWindow.restore()
+      }
       prefWindow.focus()
     }
 

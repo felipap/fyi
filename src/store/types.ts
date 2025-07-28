@@ -6,6 +6,16 @@ export type ModelSelection = {
   validatedAt: string | null
 }
 
+export type NuggetState = {
+  id: string
+  createdAt: Date
+  prompt: string
+  frequencyMs: number
+  lastRunAt: Date | null
+  lastResult: string | null
+  lastResultError: string | null
+}
+
 export type State = {
   firstOpenedAt: string // date
   lastClosedAt: string | null
@@ -20,6 +30,7 @@ export type State = {
     firstOpenedAt?: Date
     finishedOnboardingAt?: Date
   }
+  nuggets: NuggetState[]
 }
 
 export const DEFAULT_STATE: State = {
@@ -29,4 +40,5 @@ export const DEFAULT_STATE: State = {
   useNudgeCloud: false, // Important to start with false.
   modelSelection: null,
   // frontend things
+  nuggets: [],
 }

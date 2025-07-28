@@ -1,3 +1,5 @@
+# TODO rewrite
+
 # Technical Notes
 
 ## Stack
@@ -93,4 +95,4 @@ Nudge writes logs to the following files:
 - `~/Library/Logs/Nudge/main.log`
 - `~/Library/Logs/Nudge/error.log`
 
-In development, look inside the `~/Library/Logs/NudgeDev` folder.
+In development, look inside the `~/Library/Logs/FYIDev` folder.

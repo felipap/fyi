@@ -2,11 +2,28 @@
 
 import { twMerge } from 'tailwind-merge'
 
+export function ExampleMenu() {
+  return (
+    <div className="flex flex-col h-screen text-contrast [app-region:drag] bg-white/50 dark:bg-transparent">
+      <Menu>
+        <MenuItem label="Something that the AI." onClick={() => {}} />
+        <MenuSeparator />
+        <MenuItem label="Settings..." shortcut="⌘ ," onClick={() => {}} />
+        <MenuSeparator />
+        <MenuItem disabled label="Version 1.0.0" onClick={() => {}} />
+        <MenuItem label="Check for updates..." onClick={() => {}} />
+        <MenuItem label="Quit" shortcut="⌘ Q" onClick={() => {}} />
+      </Menu>
+    </div>
+  )
+}
+
 interface MenuItemProps {
   label: string
   disabled?: boolean
   onClick?: () => void
   shortcut?: string
+  className?: string
 }
 
 export function MenuItem({
@@ -14,13 +31,15 @@ export function MenuItem({
   disabled,
   onClick,
   shortcut,
+  className,
 }: MenuItemProps) {
   return (
     <div
       className={twMerge(
         '[app-region:no-drag] h-[23px] mx-[5px] px-[6px] flex items-center justify-between cursor-default group',
         onClick && 'hover:bg-[#1044de] hover:text-white rounded-[5px]',
-        disabled && 'text-contrast/50'
+        disabled && 'text-contrast/50',
+        className
       )}
       onClick={onClick}
     >

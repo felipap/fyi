@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { callNudgeAPI } from '../../lib/api'
 import { captureException, debug, log, warn } from '../../lib/logger'
-import { GoalFeedbackResult } from '../goal-feedback'
+import { PromptResultResult } from '../eval-prompt'
 
 // Keep in sync with nudge-web/app/api/goal-feedback/route.ts
 const ResponseStruct = z.object({
@@ -12,7 +12,7 @@ const ResponseStruct = z.object({
 
 export async function getGoalFeedbackFromNudgeAPI(
   goal: string
-): Promise<GoalFeedbackResult> {
+): Promise<PromptResultResult> {
   debug('[ai/cloud/goal-feedback] calling API')
 
   const result = await callNudgeAPI('/goal-feedback', {
@@ -40,9 +40,7 @@ export async function getGoalFeedbackFromNudgeAPI(
 
   return {
     data: {
-      activityDurationMins: (result.data as any).activityDurationMins,
-      feedbackType: (result.data as any).feedbackType,
-      reasoning: (result.data as any).reasoning,
+      result: (result.data as any).result,
     },
   }
 }

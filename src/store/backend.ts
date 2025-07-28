@@ -6,10 +6,10 @@ import { debug } from '../lib/logger'
 import { DEFAULT_STATE, State } from './types'
 
 // Change the app name so that, in dev, data is stored in ~/Library/Application
-// Support/NudgeDev. The original appName comes from package.json, and I
-// couldn't find another way to make it dynamic other than setting it here. (Not
-// even by setting it in main.ts, which would've been better.)
-app.setName(`Nudge${app.isPackaged ? '' : 'Dev'}`)
+// Support/FYIDev. The original appName comes from package.json, and I couldn't
+// find another way to make it dynamic other than setting it here. (Not even by
+// setting it in main.ts, which would've been better.)
+app.setName(`Fyi${app.isPackaged ? '' : 'Dev'}`)
 
 // Print the folder of storage:
 debug('app.getPath("userData")', app.getPath('userData'))
